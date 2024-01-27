@@ -9,22 +9,27 @@ function App() {
 
   const startCounterHandler = (e) => {
     const buttonName= e.target.name;
+    console.log(buttonName);
+    console.log(isPlayAllRunning);
+    console.log("isRunning", isRunning);
     const timerId = () => {
       setCountLaps((prvBar) => prvBar+1);
       setTimerID(setTimeout(timerId, 1000));
     }
     if((!isRunning && buttonName === 'singlePlayButton')){
       timerId();
-      setIsRunning(!isRunning);
-    }else if(!isPlayAllRunning && buttonName === "playAllButton"){
+      console.log("I am running");
+    }
+    if(!isPlayAllRunning && buttonName === "playAllButton"){
       timerId();
+      console.log("Is running all");
       setIsPlayAllRunning(!isPlayAllRunning);
     }
     else{
-
+      
       clearInterval(timerID);
     }
-    console.log("I am running");
+    setIsRunning(!isRunning);
   };
 
   const resetChangeHandler = () => {

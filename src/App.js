@@ -23,13 +23,13 @@ function App() {
     if(!isPlayAllRunning && buttonName === "playAllButton"){
       timerId();
       console.log("Is running all");
-      setIsPlayAllRunning(!isPlayAllRunning);
     }
     else{
       
       clearInterval(timerID);
     }
     setIsRunning(!isRunning);
+    setIsPlayAllRunning(!isPlayAllRunning);
   };
 
   const resetChangeHandler = () => {

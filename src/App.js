@@ -8,12 +8,11 @@ function App() {
 
   const startCounterHandler = () => {
     if(!isRunning){
-    console.log(isRunning);
-      const timerId = setInterval(() => {
+      const timerId = () => {
         setCountLaps((prvBar) => prvBar+1);
-        
-      }, 1000);
-      setTimerID(timerId);
+        setTimerID(setTimeout(timerId, 1000));
+      }
+      timerId();
     }else{
 
       clearInterval(timerID);
@@ -22,10 +21,16 @@ function App() {
     console.log("I am running");
   };
 
- 
-   
+  const restChangeHandler = () => {
+    clearInterval(timerID);
+    setCountLaps(0);
+    console.log("reset all");
+  };
+
   return (
     <div className="App">
+      <button>{!isRunning? 'Play All': 'Resume'}</button>
+      <button onClick={restChangeHandler}>Rest All</button>
         <div className="outer-container">
           <div>{countLaps}</div>
           <button onClick={startCounterHandler}>{!isRunning ? 'Start':'Pause'}</button>

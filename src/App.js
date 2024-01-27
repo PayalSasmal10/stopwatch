@@ -4,19 +4,25 @@ import './App.css';
 function App() {
   const [countLaps, setCountLaps] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const [timerID, setTimerID] = useState(null);
 
   const startCounterHandler = () => {
-    const timerId = setInterval(() => {
-      setCountLaps((prvBar) => prvBar+1);
-      
-    }, 1000);
-    setIsRunning(true);
-    return () => clearInterval(timerId);
+    if(!isRunning){
+    console.log(isRunning);
+      const timerId = setInterval(() => {
+        setCountLaps((prvBar) => prvBar+1);
+        
+      }, 1000);
+      setTimerID(timerId);
+    }else{
+
+      clearInterval(timerID);
+    }
+    setIsRunning(!isRunning);
+    console.log("I am running");
   };
 
-  const pauseCounter = () => {
-    
-  };
+ 
    
   return (
     <div className="App">
